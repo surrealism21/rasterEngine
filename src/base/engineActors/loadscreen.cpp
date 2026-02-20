@@ -15,7 +15,7 @@ class LoadscreenMgr : public dBase_c {
 CREATE_STATE(LoadscreenMgr, Begin);
 CREATE_STATE(LoadscreenMgr, Evil);
 
-Profile loadscreenProfile = Profile<LoadscreenMgr>(ActorID::LoadScreen);
+const Profile loadscreenProfile = Profile<LoadscreenMgr>(ActorID::LoadScreen);
 
 void LoadscreenMgr::onCreate() {
     timer = 0;
@@ -52,7 +52,7 @@ void LoadscreenMgr::executeState_Evil() {
     if (timer > 90) {
         this->removeFromList();
     }
-    cout << "gay seggs" << endl;
+    cout << "Yaoi is a better word for this. I love it." << endl;
 }
 
 void LoadscreenMgr::endState_Evil() {

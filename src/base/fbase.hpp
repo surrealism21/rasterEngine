@@ -46,6 +46,18 @@ public:
     fFactory factory;
 };
 
+// Global funcs
+
+// Creates actor and adds it to the list
+void createActor(ActorID actor);
+
+// Returns a %set which contains all actors of a certain ID.
+// Performance intensive...
+std::set<dBase_c*> searchActors(ActorID actorid);
+
+// Returns first actor found of a certain ID. Useful if there's only one such instance alive, as tags are slower.
+dBase_c* findFirstActor(ActorID actorid);
+
 template <typename T>
 class Profile {
 public:

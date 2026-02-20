@@ -7,6 +7,8 @@ int i = 0;
 void ofApp::setup() {
     scaleX = 1;
     scaleY = 1;
+
+    createActor(ActorID::LoadScreen);
 }
 
 //--------------------------------------------------------------

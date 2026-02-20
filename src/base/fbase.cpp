@@ -46,3 +46,29 @@ dBase_c* fBase_c::fFactory::create(ActorID actor) {
     }
     return NULL;
 }
+
+// Global funcs
+
+void createActor(ActorID actorid) {
+    dBase_c* actor = fBase_c::instance.factory.create(actorid);
+    actor->addToList();
+    return;
+}
+
+dBase_c* findFirstActor(ActorID actorid) {
+    for (dBase_c* curr : fBase_c::instance.Actors) {
+        if (curr->actorID == actorid) {
+            return curr;
+        }
+    }
+}
+
+std::set<dBase_c*> searchActors(ActorID actorid) {
+    std::set<dBase_c*> ret;
+    for (dBase_c* curr : fBase_c::instance.Actors) {
+        if (curr->actorID == actorid) {
+            ret.insert(curr);
+        }
+    }
+    return ret;
+}

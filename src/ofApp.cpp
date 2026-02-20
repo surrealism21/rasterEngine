@@ -19,7 +19,6 @@ void ofApp::update() {
 void ofApp::draw() {
     ofPushMatrix();
         ofScale(scaleX, scaleY, 1);
-        arcTest.draw(10, 10);
         fBase_c::instance.commonDraw();
     ofPopMatrix();
 }

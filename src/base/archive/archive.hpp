@@ -1,5 +1,5 @@
 #pragma once
-#include "game.hpp"
+#include "raster.hpp"
 #include "ofMain.hpp"
 
 #define little32(symbol) __builtin_bswap32(symbol)

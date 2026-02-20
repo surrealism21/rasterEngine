@@ -1,4 +1,4 @@
-#include "game.hpp"
+#include "raster.hpp"
 #include "state.hpp"
 
 class LoadscreenMgr : public dBase_c {

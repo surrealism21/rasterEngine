@@ -1,5 +1,6 @@
 #pragma once
-#include "game.hpp"
+#include "Actors.hpp"
+#include "actor.hpp"
 #include <unordered_map>
 #include <typeindex>
 

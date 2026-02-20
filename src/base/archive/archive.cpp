@@ -1,6 +1,6 @@
 #define POCKETLZMA_LZMA_C_DEFINE
 #include <base/archive/pocketlzma.hpp>
-#include "game.hpp"
+#include "raster.hpp"
 using namespace std;
 
 vector<u8> ReadLZMAArchive(string path) {

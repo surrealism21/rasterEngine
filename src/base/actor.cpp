@@ -1,4 +1,4 @@
-#include "game.hpp"
+#include "raster.hpp"
 
 void dBase_c::addToList() {
     fBase_c::instance.Actors.push_back(this);

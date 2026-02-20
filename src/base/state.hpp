@@ -47,6 +47,14 @@ public:
 	void executeState_##NAME(); \
 	void endState_##NAME();
 
+// Declare a state. To be used inside a class definition. State will be called "StateID_[NAME]". Oh! And virtually.
+// The methods will be called beginState_[NAME], executeState_[NAME] and endState_[NAME]...
+#define DECLARE_STATE_VIRTUAL(NAME) \
+	static State StateID_##NAME; \
+	virtual void beginState_##NAME(); \
+	virtual void executeState_##NAME(); \
+	virtual void endState_##NAME();
+
 // Declare a state, with somebody else's preferred names. To be used inside a class definition. State will be called "StateID_[NAME]".
 // The methods will be called beginState_[NAME], executeState_[NAME] and endState_[NAME]...
 // You will need to use CREATE_STATE_ALT.

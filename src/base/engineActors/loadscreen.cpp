@@ -5,8 +5,7 @@ class LoadscreenMgr : public dBase_c {
     void onCreate();
     void onExecute();
 
-    typedef dState_c<LoadscreenMgr> State;
-    dStateMgr_c<LoadscreenMgr> acState;
+    USING_STATES(LoadscreenMgr);
     DECLARE_STATE(Begin);
     DECLARE_STATE(Evil);
 

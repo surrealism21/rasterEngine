@@ -34,6 +34,7 @@ void LoadscreenMgr::executeState_Begin() {
     timer++;
     if (timer > 60) {
         acState.doStateChange(&StateID_Evil);
+        return;
     }
     cout << "Trial amount finna it" << endl;
 }

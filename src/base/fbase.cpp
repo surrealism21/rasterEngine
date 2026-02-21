@@ -61,6 +61,7 @@ dBase_c* findFirstActor(ActorID actorid) {
             return curr;
         }
     }
+    return NULL;
 }
 
 std::set<dBase_c*> searchActors(ActorID actorid) {

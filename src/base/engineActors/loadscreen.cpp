@@ -1,61 +1,29 @@
 #include "raster.hpp"
-#include "state.hpp"
 
-class LoadscreenMgr : public dBase_c {
+// A loading screen. You can customize it...
+class Loadscreen : public dBase_c {
     void onCreate();
     void onExecute();
+    void onDraw();
 
-    USING_STATES(LoadscreenMgr);
-    DECLARE_STATE(Begin);
-    DECLARE_STATE(Evil);
-
-    int timer;
+    dScene_c* scene;
 };
 
-CREATE_STATE(LoadscreenMgr, Begin);
-CREATE_STATE(LoadscreenMgr, Evil);
+const Profile loaderProfile = Profile<Loadscreen>(ActorID::LoadScreen);
 
-const Profile loadscreenProfile = Profile<LoadscreenMgr>(ActorID::LoadScreen);
-
-void LoadscreenMgr::onCreate() {
-    timer = 0;
-    INIT_STATES(&StateID_Begin);
+void Loadscreen::onCreate() {
+    scene = (dScene_c*)owner;
 }
 
-void LoadscreenMgr::onExecute() {
-    acState.execute();
-}
-
-void LoadscreenMgr::beginState_Begin() {
-    cout << "Hi" << endl;
-}
-
-void LoadscreenMgr::executeState_Begin() {
-    timer++;
-    if (timer > 60) {
-        acState.doStateChange(&StateID_Evil);
-        return;
-    }
-    cout << "Trial amount finna it" << endl;
-}
-
-void LoadscreenMgr::endState_Begin() {
-    cout << "You ran out of BEGIN" << endl;
-}
-
-void LoadscreenMgr::beginState_Evil() {
-    cout << "Eviling" << endl;
-    timer = 0;
-}
-
-void LoadscreenMgr::executeState_Evil() {
-    timer++;
-    if (timer > 90) {
+void Loadscreen::onExecute() {
+    // this is always like this
+    if (scene->inited) {
         this->removeFromList();
     }
-    cout << "Yaoi is a better word for this. I love it." << endl;
 }
 
-void LoadscreenMgr::endState_Evil() {
-    cout << "Bye" << endl;
+void Loadscreen::onDraw() {
+    Vec3 begin = Vec3(0, 0, 0);
+    Vec3 end = Vec3(50, 50, 50);
+    ofDrawArrow(begin, end);
 }

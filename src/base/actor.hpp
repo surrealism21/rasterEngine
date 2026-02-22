@@ -24,6 +24,11 @@ public:
     void addToList();
     void removeFromList();
     std::list<dBase_c*>::iterator findMe();
+
+    dBase_c* createOwnedActor(ActorID actor, bool add = true);
+
+    // Content, not funcs
+
     s16 listPos;
 
     // Actor ID
@@ -32,8 +37,9 @@ public:
     Vec2 pos;
 
     // settings...
-    union {
-        u64 settings;
-        u64* multiSettings;
-    };
+    settingsType settings;
+
+    // Owner. We do not have "parents" here.
+    // uhm, that may have come out wrong. I AM --- interested in that and LIKE it when stuff happens
+    dBase_c* owner;
 };

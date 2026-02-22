@@ -8,7 +8,17 @@ void ofApp::setup() {
     scaleX = 1;
     scaleY = 1;
 
-    createActor(ActorID::LoadScreen);
+    auto scene = (dScene_c*)fBase_c::instance.factory.create(ActorID::Scene);
+    scene->testBool = true;
+    cout << &scene->boundActors << endl;
+    SceneBoundActor test;
+    test.id = ActorID::AC_Test;
+    scene->boundActors.push_back(&test);
+    
+    
+    cout << (int)scene->boundActors[0]->id << endl;
+
+    scene->addToList();
 }
 
 //--------------------------------------------------------------

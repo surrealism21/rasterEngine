@@ -43,4 +43,12 @@ void dBase_c::control(std::set<int> &keysPressed) { return; }
 dBase_c::dBase_c() : actorID(ActorID::Num) { return; }
 dBase_c::~dBase_c() { return; }
 
-// Settings
+dBase_c* dBase_c::createOwnedActor(ActorID actor, bool add) {
+    auto acr = fBase_c::instance.factory.create(actor);
+    acr->owner = this;
+    if (add) {
+        acr->addToList();
+    }
+    // Return a pointer to the actor
+    return acr;
+}

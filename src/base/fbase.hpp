@@ -24,6 +24,9 @@ public:
     Vec2 mousepos;
     Vec2 res;
 
+    // add all this later
+    //void doSceneChange();
+
     // This doesn't use smart pointers so hopefully it won't deallocate when being tossed around.
     class fFactory {
         using buildfunc = std::function<dBase_c*()>;

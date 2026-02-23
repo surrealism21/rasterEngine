@@ -9,14 +9,9 @@ void ofApp::setup() {
     scaleY = 1;
 
     auto scene = (dScene_c*)fBase_c::instance.factory.create(ActorID::Scene);
-    scene->testBool = true;
     cout << &scene->boundActors << endl;
-    SceneBoundActor test;
-    test.id = ActorID::AC_Test;
-    scene->boundActors.push_back(&test);
     
-    
-    cout << (int)scene->boundActors[0]->id << endl;
+    scene->addActor(ActorID::Solid);
 
     scene->addToList();
 }

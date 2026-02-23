@@ -14,7 +14,10 @@ public:
     virtual void onCreate();
     virtual void onDelete();
 
+    // Haha, do not use this Jonathan!
+    virtual void systemExecute();
     virtual void onExecute();
+    
     virtual void onDraw();
 
     // Input. Passes by reference to avoid ram bloat
@@ -42,4 +45,13 @@ public:
     // Owner. We do not have "parents" here.
     // uhm, that may have come out wrong. I AM --- interested in that and LIKE it when stuff happens
     dBase_c* owner;
+};
+
+// actor that has physics, fully
+class dPhysicsActor_c : public dBase_c {
+public:
+    virtual void physicsUpdate();
+    virtual void onCollide();
+    virtual void MoveX(float amount);
+    virtual void MoveY(float amount);
 };

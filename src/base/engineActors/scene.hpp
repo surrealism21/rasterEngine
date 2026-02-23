@@ -13,6 +13,13 @@ public:
     }
 };
 
+#define ADD_SCENE_ACTOR(scene, ids) \
+    SceneBoundActor ac; \
+    ac.id = ids; \
+    ac.position = Vec2(0,0); \
+    ac.settings.settings = 0; \
+    scene->boundActors.push_back(&ac);
+
 class dScene_c : public dBase_c {
 public:
     dScene_c();
@@ -28,7 +35,7 @@ public:
     bool inited;
     vector<SceneBoundActor*> boundActors;
 
-    dBase_c* loader;
+    void addActor(ActorID id);
 
-    bool testBool;
+    dBase_c* loader;
 };

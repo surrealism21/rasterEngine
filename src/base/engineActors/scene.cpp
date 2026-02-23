@@ -42,3 +42,11 @@ void dScene_c::onCreate() {
 
 void dScene_c::onExecute() { return; }
 void dScene_c::onDraw() { return; }
+
+void dScene_c::addActor(ActorID id) {
+    SceneBoundActor ac; 
+    ac.id = id;
+    ac.position.set(0,0);
+    ac.settings.settings = 0;
+    this->boundActors.push_back(&ac);
+}

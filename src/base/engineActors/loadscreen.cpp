@@ -7,6 +7,8 @@ class Loadscreen : public dBase_c {
     void onDraw();
 
     dScene_c* scene;
+
+    string periods;
 };
 
 const Profile loaderProfile = Profile<Loadscreen>(ActorID::LoadScreen);
@@ -20,10 +22,13 @@ void Loadscreen::onExecute() {
     if (scene->inited) {
         this->removeFromList();
     }
+    periods += ".";
 }
 
 void Loadscreen::onDraw() {
-    Vec3 begin = Vec3(0, 0, 0);
-    Vec3 end = Vec3(50, 50, 50);
-    ofDrawArrow(begin, end);
+    ofSetColor(0);
+    ofDrawRectangle(0, 0, 1080, 1920);
+    ofSetColor(255);
+    
+    ofDrawBitmapString("Loading"+periods, 0, 10);
 }

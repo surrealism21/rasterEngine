@@ -32,14 +32,12 @@ void dScene_c::onCreate() {
     inited = false;
     thread t(&dScene_c::initActors, this);
     cout << "Scene is preparing actors with thread ID "  << t.get_id() << ". Bye." << endl;
-    t.detach();
-    //initActors();
-    cout << "--- inits ---" << endl;
 
     // create the loading screen
     cout << "--- loading screen ---" << endl;
     loader = createOwnedActor(ActorID::LoadScreen);
-    cout << "--- more inits ---" << endl;
+    cout << "--- inits ---" << endl;
+    t.detach();
 }
 
 void dScene_c::onExecute() { return; }

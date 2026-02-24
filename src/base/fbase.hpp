@@ -1,7 +1,9 @@
 #pragma once
 #include "Actors.hpp"
 #include "actor.hpp"
+#include "physicsActor.hpp"
 #include <unordered_map>
+#include <unordered_set>
 #include <typeindex>
 
 // Executes and manages, everything.
@@ -9,6 +11,7 @@
 class fBase_c {
 public:
     std::list<dBase_c*> Actors;
+    std::list<dPhysicsActor_c*> PhysicsActors;
 
     // Defined in fbase.cpp
     static fBase_c instance;
@@ -54,9 +57,9 @@ public:
 // Creates actor and adds it to the list
 void createActor(ActorID actor);
 
-// Returns a %set which contains all actors of a certain ID.
-// Performance intensive...
-std::set<dBase_c*> searchActors(ActorID actorid);
+// Returns a %list which contains all actors of a certain ID.
+// Performance intensive... only ran by the system once per frame.
+std::list<dBase_c*> searchActors(ActorID actorid);
 
 // Returns first actor found of a certain ID. Useful if there's only one such instance alive, as tags are slower.
 dBase_c* findFirstActor(ActorID actorid);

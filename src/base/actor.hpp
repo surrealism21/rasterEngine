@@ -32,7 +32,7 @@ public:
 
     // Content, not funcs
 
-    s16 listPos;
+    s64 listPos;
 
     // Actor ID
     ActorID actorID;
@@ -45,13 +45,4 @@ public:
     // Owner. We do not have "parents" here.
     // uhm, that may have come out wrong. I AM --- interested in that and LIKE it when stuff happens
     dBase_c* owner;
-};
-
-// actor that has physics, fully
-class dPhysicsActor_c : public dBase_c {
-public:
-    virtual void physicsUpdate();
-    virtual void onCollide();
-    virtual void MoveX(float amount);
-    virtual void MoveY(float amount);
 };

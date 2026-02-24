@@ -9,7 +9,7 @@ enum class ActorID {
     LoadScreen = -1,
     Scene = -2,
     AC_Test = -3,
-    Solid = -4,
+    Solid = -45,
 
     Num
 };

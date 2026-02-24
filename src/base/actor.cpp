@@ -8,6 +8,7 @@ void dBase_c::addToList() {
     this->onCreate();
 }
 
+// PROBABLY doesn't actually work! Fix!!
 std::list<dBase_c*>::iterator dBase_c::findMe() {
     // This is arguably more creature but it does this in O(1) time so
     std::list<dBase_c*>::iterator test = fBase_c::instance.Actors.begin();

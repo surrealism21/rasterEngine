@@ -5,8 +5,24 @@
 // This one is more complex because it runs last and handles actor deletions. The iterator gets very fucked if we do not baby it,
 // so we do that here. RemoveFromList is an illusion. Bye.
 void fBase_c::commonExecute() {
+    // lazy ass physics garbage collection
+    // needs to come first otherwise the normal one will Kill it okay thanks
+    for (auto iter = PhysicsActors.begin(); iter != PhysicsActors.end();) {
+        dPhysicsActor_c* curr = *iter;
+        if (curr->physicsListPos == -1) {
+            iter = PhysicsActors.erase(iter);
+            // no deletion yay!
+            continue;
+        }
+        else {
+            ++iter;
+        }
+    }
+
+    // normal running
     for (auto iter = Actors.begin(); iter != Actors.end();) {
         dBase_c* curr = *iter;
+        // collect garbage
         if (curr->listPos == -1) {
             iter = Actors.erase(iter);
             delete curr;
@@ -15,7 +31,9 @@ void fBase_c::commonExecute() {
         else {
             ++iter;
         }
-        curr->onExecute(); 
+        // SOMETIMES does physics stuff, but i'd like to keep this polymorphic or whatever you call it? Custom
+        curr->systemExecute();
+        curr->onExecute();
     }
 }
 
@@ -64,11 +82,11 @@ dBase_c* findFirstActor(ActorID actorid) {
     return NULL;
 }
 
-std::set<dBase_c*> searchActors(ActorID actorid) {
-    std::set<dBase_c*> ret;
+std::list<dBase_c*> searchActors(ActorID actorid) {
+    std::list<dBase_c*> ret;
     for (dBase_c* curr : fBase_c::instance.Actors) {
         if (curr->actorID == actorid) {
-            ret.insert(curr);
+            ret.push_back(curr);
         }
     }
     return ret;

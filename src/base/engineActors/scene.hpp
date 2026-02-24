@@ -35,7 +35,7 @@ public:
     bool inited;
     vector<SceneBoundActor*> boundActors;
 
-    void addActor(ActorID id);
+    SceneBoundActor* addActor(ActorID id);
 
     dBase_c* loader;
 };

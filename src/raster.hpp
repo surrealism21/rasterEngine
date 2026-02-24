@@ -3,6 +3,7 @@
 #pragma once
 #include <ofMain.hpp>
 #include "actor.hpp"
+#include "physicsActor.hpp"
 #include "fbase.hpp"
 #include "scene.hpp"
 #include "state.hpp"

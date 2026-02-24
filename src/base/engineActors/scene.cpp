@@ -21,6 +21,8 @@ void dScene_c::initActors() {
         newAcr->pos = acr->position;
         newAcr->settings = acr->settings;
         newAcr->addToList();
+        // free the memory it was using in the heap
+        delete acr;
     }
     cout << "--- done ---" << endl;
     inited = true;
@@ -43,10 +45,12 @@ void dScene_c::onCreate() {
 void dScene_c::onExecute() { return; }
 void dScene_c::onDraw() { return; }
 
-void dScene_c::addActor(ActorID id) {
-    SceneBoundActor ac; 
-    ac.id = id;
-    ac.position.set(0,0);
-    ac.settings.settings = 0;
-    this->boundActors.push_back(&ac);
+SceneBoundActor* dScene_c::addActor(ActorID id) {
+    // this is deleted in initActors(), no leakage
+    SceneBoundActor* ac = new SceneBoundActor;
+    ac->id = id;
+    ac->position.set(0,0);
+    ac->settings.settings = 0;
+    this->boundActors.push_back(ac);
+    return ac;
 }

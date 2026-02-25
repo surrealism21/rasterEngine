@@ -33,8 +33,8 @@ void dPhysicsActor_c::MoveX(float amount) {
         int sign = MicrosoftSign(move);
         Vec2 offs = Vec2(sign, 0);
         while (move != 0) {
-            CollisionInfo collide = collideAt(offs);
-            if (!collide.collided) {
+            dPhysicsActor_c* collide = collideAt(offs);
+            if (!collide) {
                 // no collision
                 // The "sign bit" is whether or not the number is positive. If it is 1, then move forward.
                 this->pos.x += sign;
@@ -42,8 +42,8 @@ void dPhysicsActor_c::MoveX(float amount) {
                 move -= sign;
             }
             else {
-                onCollide(collide.other);
-                collide.other->onCollide(this);
+                onCollide(collide);
+                collide->onCollide(this);
                 break;
             }
         }
@@ -62,8 +62,8 @@ void dPhysicsActor_c::MoveY(float amount) {
         int sign = MicrosoftSign(move);
         Vec2 offs = Vec2(0, sign);
         while (move != 0) {
-            CollisionInfo collide = collideAt(offs);
-            if (!collide.collided) {
+            dPhysicsActor_c* collide = collideAt(offs);
+            if (!collide) {
                 // no collision
                 // The "sign bit" is whether or not the number is positive. If it is 1, then move forward.
                 this->pos.y += sign;
@@ -71,8 +71,8 @@ void dPhysicsActor_c::MoveY(float amount) {
                 move -= sign;
             }
             else {
-                onCollide(collide.other);
-                collide.other->onCollide(this);
+                onCollide(collide);
+                collide->onCollide(this);
                 break;
             }
         }
@@ -97,23 +97,28 @@ void dPhysicsActor_c::removeFromPhysicsList() {
     this->physicsListPos = -1;
 }
 
-CollisionInfo dPhysicsActor_c::collideAt(Vec2 offs) {
-    CollisionInfo ret;
-    ret.collided = false;
-    // I'm too lazy to make this use a STL container.
-    ret.other = nullptr;
-
+dPhysicsActor_c* dPhysicsActor_c::collideAt(Vec2 offs) {
     // this is for checking to insure that we're NEXT to something, but not TOUCHING it. Atoms never touch, my shitty rectangles never touch.
     this->offsetBox = this->box;
     offsetBox.position.x += offs.x;
     offsetBox.position.y += offs.y;
     for (dPhysicsActor_c* other : fBase_c::instance.PhysicsActors) { 
-        if (offsetBox.intersects(other->box) && this != other) {
-            ret.collided = true;
-            ret.other = other;
+        if (this == other) {
+            continue;
+        }
+        // do shit with the other box so collision isn't broken
+        ofRectangle otherBox = other->box;
+        if (signbit(offs.x)) {
+            otherBox.position.x -= -3;
+        }
+        if (signbit(offs.y)) {
+            otherBox.position.y -= -3;
+        }
+        if (offsetBox.intersects(otherBox)) {
+            return other;
         }
     }
-    return ret;
+    return 0;
 }
 
 void dPhysicsActor_c::onCollide(dPhysicsActor_c* other) { return; }

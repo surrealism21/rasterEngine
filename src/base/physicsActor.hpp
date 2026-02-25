@@ -32,5 +32,5 @@ public:
 
     bool solid;
 
-    CollisionInfo collideAt(Vec2 offs);
+    dPhysicsActor_c* collideAt(Vec2 offs);
 };

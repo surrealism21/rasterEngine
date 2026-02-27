@@ -3,6 +3,7 @@
 class ac_test : public dPhysicsActor_c {
     void onCreate();
     void onDraw();
+    void debugDraw();
     void control(std::set<int> &keysPressed);
     void onCollide(dPhysicsActor_c* other);
 };
@@ -15,17 +16,12 @@ void ac_test::onCreate() {
 }
 
 void ac_test::onDraw() {
+
+}
+
+void ac_test::debugDraw() {
     ofSetColor(255, 255, 0); 
     box.draw();
-
-
-    ofSetColor(0, 255, 0);
-    ofNoFill();
-    box.trueDraw();
-    ofSetColor(255, 0, 0);
-    offsetBox.trueDraw();
-    ofFill();
-    ofSetColor(255);
 }
 
 void ac_test::control(std::set<int> &keysPressed) {

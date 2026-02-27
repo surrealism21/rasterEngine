@@ -19,6 +19,7 @@ public:
     virtual void onExecute();
     
     virtual void onDraw();
+    virtual void debugDraw();
 
     // Input. Passes by reference to avoid ram bloat
     virtual void control(std::set<int> &keysPressed);

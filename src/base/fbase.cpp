@@ -41,6 +41,8 @@ void fBase_c::commonDraw() {
     for (dBase_c* curr : Actors) {
         if (curr->listPos != -1) {
             curr->onDraw();
+            // TODO: add debug stuff. For now, always on
+            curr->debugDraw();
         }
     }
 }

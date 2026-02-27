@@ -3,6 +3,7 @@
 class Solid : public dPhysicsActor_c {
     void onCreate();
     void onDraw();
+    void debugDraw();
     void onExecute();
 };
 
@@ -18,10 +19,11 @@ void Solid::onExecute() {
 }
 
 void Solid::onDraw() {
-    ofSetColor(255, 0, 255);
+
+}
+
+void Solid::debugDraw() {
+    ofSetColor(255, 0, 255, 100);
     box.draw();
-    ofNoFill();
-    box.trueDraw();
-    ofFill();
     ofSetColor(255);
 }

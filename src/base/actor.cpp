@@ -37,6 +37,7 @@ void dBase_c::removeFromList() {
 
 // make sure these exist since C++ doesn't support abstract functions
 void dBase_c::onDraw() { return; }
+void dBase_c::debugDraw() { return; }
 void dBase_c::systemExecute() { return; }
 void dBase_c::onExecute() { return; }
 void dBase_c::onCreate() { return; }

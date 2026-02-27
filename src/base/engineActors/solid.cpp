@@ -9,7 +9,7 @@ class Solid : public dPhysicsActor_c {
 const Profile solidProfile = Profile<Solid>(ActorID::Solid);
 
 void Solid::onCreate() {
-    this->box = ofRectangle(pos.x, pos.y, 24, 24);
+    this->box = ofRectangle(pos.x, pos.y, 16, 16);
     addToPhysicsList();
 }
 

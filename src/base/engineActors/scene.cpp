@@ -46,6 +46,7 @@ void dScene_c::onExecute() { return; }
 void dScene_c::onDraw() { return; }
 
 SceneBoundActor* dScene_c::addActor(ActorID id) {
+    assert(id != ActorID::Scene);
     // this is deleted in initActors(), no leakage
     SceneBoundActor* ac = new SceneBoundActor;
     ac->id = id;

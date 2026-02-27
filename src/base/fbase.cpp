@@ -58,6 +58,7 @@ void fBase_c::commonControl() {
 
 dBase_c* fBase_c::fFactory::create(ActorID actor) {
     // dummy check
+    assert(funcs.find(actor) != nullptr);
     auto it = funcs.find(actor);
     if (it != funcs.end()) {
         return it->second();

@@ -27,7 +27,7 @@ typedef union settingsType {
 // If you think this is evil the "floating point zone" (where decimals do not matter) is 2e23, or 4e22 in visual coordinates. You'll be fine.
 // I NOT using doubles and also doubling the memory usage of games
 // if there ever comes a need to fuck with the scaling. 5 is a whole number and is (more) accurate
-const float mul = 5;
+const float mul = 2.5f;
 
 class RasRectangle : public ofRectangle {
 public:
@@ -38,10 +38,10 @@ public:
 
     RasRectangle operator=(ofRectangle other);
     inline void draw() {
-        ofDrawRectangle(position/mul, width/mul, height/mul);
+        ofDrawRectangle(position, width, height);
     }
 
-    // Use draw(). This will draw the rectangle at its' interal size, 5 times its' visual size. Do not use!
+    // Use draw(). This is a clone of draw().
     inline void trueDraw() {
         ofDrawRectangle(position, width, height);
     }

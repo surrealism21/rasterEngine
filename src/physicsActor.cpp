@@ -24,7 +24,7 @@ int MicrosoftSign(float num) {
 // it's fine. Plus this binary will be more efficent - REDDITEVIL
 void dPhysicsActor_c::MoveX(float amount) {
     // our fractional movement...
-    this->xRemainder += amount;
+    this->xRemainder += amount*mul;
 
     int move = round(xRemainder);
     // dummy check
@@ -53,7 +53,7 @@ void dPhysicsActor_c::MoveX(float amount) {
 
 void dPhysicsActor_c::MoveY(float amount) {
     // our fractional movement...
-    this->yRemainder += amount;
+    this->yRemainder += amount*mul;
 
     int move = round(yRemainder);
     // dummy check

@@ -5,14 +5,13 @@ int i = 0;
 
 //--------------------------------------------------------------
 void ofApp::setup() {
-    scaleX = 1;
-    scaleY = 1;
-
     auto scene = (dScene_c*)fBase_c::instance.factory.create(ActorID::Scene);
     cout << &scene->boundActors << endl;
 
-    SceneBoundActor* solid = scene->addActor(ActorID::Solid);
-    solid->position.set(200,200);
+    for (int i = 0; i < 32; i++) {
+        SceneBoundActor* solid = scene->addActor(ActorID::Solid);
+        solid->position.set(i*16*mul,400);
+    }
 
     SceneBoundActor* test = scene->addActor(ActorID::AC_Test);
     test->position.set(50, 50);
@@ -30,7 +29,6 @@ void ofApp::update() {
 //--------------------------------------------------------------
 void ofApp::draw() {
     ofPushMatrix();
-        ofScale(scaleX, scaleY, 1);
         fBase_c::instance.commonDraw();
     ofPopMatrix();
 }

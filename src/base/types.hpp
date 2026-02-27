@@ -38,7 +38,10 @@ public:
 
     RasRectangle operator=(ofRectangle other);
     inline void draw() {
-        ofDrawRectangle(position, width, height);
+        ofPushMatrix();
+            ofScale(0.4, 0.4);
+            ofDrawRectangle(position, width, height);
+        ofPopMatrix();
     }
 
     // Use draw(). This is a clone of draw().

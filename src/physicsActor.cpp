@@ -9,13 +9,14 @@ void dPhysicsActor_c::systemExecute() {
     this->box.y = pos.y;
 }
 
-// microsoft's sign slop from C#. basically cloned so
+// not really the microsoft sign func anymore, more like "my sign function for physics"
+// it's also static so who cares
 int MicrosoftSign(float num) {
     if (signbit(num)) {
-        return -1;
+        return -mul;
     }
     else {
-        return 1;
+        return mul;
     }
 }
 
@@ -106,15 +107,7 @@ dPhysicsActor_c* dPhysicsActor_c::collideAt(Vec2 offs) {
         if (this == other) {
             continue;
         }
-        // do shit with the other box so collision isn't broken
-        ofRectangle otherBox = other->box;
-        if (signbit(offs.x)) {
-            otherBox.position.x -= -3;
-        }
-        if (signbit(offs.y)) {
-            otherBox.position.y -= -3;
-        }
-        if (offsetBox.intersects(otherBox)) {
+        if (offsetBox.intersects(other->box)) {
             return other;
         }
     }

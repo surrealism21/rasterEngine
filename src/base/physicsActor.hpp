@@ -27,8 +27,8 @@ public:
     float xRemainder;
     float yRemainder;
 
-    ofRectangle box;
-    ofRectangle offsetBox;
+    RasRectangle box;
+    RasRectangle offsetBox;
 
     bool solid;
 

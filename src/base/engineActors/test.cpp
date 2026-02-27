@@ -10,18 +10,18 @@ class ac_test : public dPhysicsActor_c {
 const Profile testProfile = Profile<ac_test>(ActorID::AC_Test);
 
 void ac_test::onCreate() {
-    this->box = ofRectangle(pos.x, pos.y, 50, 50);
+    this->box = ofRectangle(pos.x, pos.y, 10, 10);
     addToPhysicsList();
 }
 
 void ac_test::onDraw() {
     ofSetColor(255, 255, 0); 
-    ofDrawRectangle(box);
+    box.draw();
 
 
     ofSetColor(0, 255, 0);
     ofNoFill();
-    ofDrawRectangle(offsetBox);
+    box.trueDraw();
     ofFill();
     ofSetColor(255);
 }

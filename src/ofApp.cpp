@@ -5,6 +5,8 @@ int i = 0;
 
 //--------------------------------------------------------------
 void ofApp::setup() {
+    ofSetAlphaBlending(true);
+
     auto scene = (dScene_c*)fBase_c::instance.factory.create(ActorID::Scene);
     cout << &scene->boundActors << endl;
 
@@ -28,9 +30,7 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-    ofPushMatrix();
-        fBase_c::instance.commonDraw();
-    ofPopMatrix();
+    fBase_c::instance.commonDraw();
 }
 
 //--------------------------------------------------------------
